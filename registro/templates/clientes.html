@@ -1,0 +1,725 @@
+<!-- #section:settings.box -->
+
+						<div class="page-header">
+							<h1>
+								Registro 
+								
+									<i class="ace-icon fa fa-angle-double-right"></i>
+								Clientes
+								
+							</h1>
+						</div><!-- /.page-header -->
+
+						<div class="row">
+							<div class="col-xs-12">
+								
+								<input class="form-control" id="hiddenvalorclienteeditcliente" type="hidden" />
+								<a class="sub_nuevoclientes">
+								<button class="btn btn-info  btn-sm btn-primary">
+									<i class="ace-icon fa fa-plus-circle align-top bigger-125"></i>
+													Nuevo Cliente
+								</button><br/><br/>
+								</a>	
+								<input class="form-control" id="hiddenvaloreditcliente" type="hidden" />
+								<table id="grid-tableeditcliente"></table>
+
+								<div id="grid-pagereditcliente"></div>
+								<!-- PAGE CONTENT ENDS -->
+							</div><!-- /.col -->
+						</div><!-- /.row -->
+					
+
+			<a href="#" id="btn-scroll-up" class="btn-scroll-up btn btn-sm btn-inverse">
+				<i class="ace-icon fa fa-angle-double-up icon-only bigger-110"></i>
+			</a>
+	
+		<!-- inline scripts related to this page -->
+		
+		
+		<div id="dialog-eliminareditcliente" class="hide">
+			<div class="alert alert-info bigger-110 del-table-bottom">
+				Desea eliminar el siguiente registro?
+			</div>
+		</div>
+		
+		
+		
+		
+		<div id="dialog-eliminar-validareditcliente" class="hide">
+			<div class="alert alert-info bigger-110 del-table-bottom">
+				El cliente no se puede eliminar, porque esta siendo usando en otra operaci�n.
+			</div>
+		</div>
+		
+		
+		<div id="dialog_editClienteeditcliente" class="hide">
+			<div class="row">
+				<div class="col-xs-12">
+					<!-- PAGE CONTENT BEGINS -->
+					 <form id="dialogformEditVerClienteeditcliente" class="form-horizontal" role="form">
+					   
+					   <div class="form-group">
+							<label class="col-sm-3 control-label no-padding-right">Nombre </label>
+							<div class="col-sm-9">
+								<input type="text" id="txtfechanacediteditcliente" name="txtfechanacediteditcliente" onkeyup="mayusculas('txtfechanacediteditcliente')" placeholder="Ingrese Nombre" class="form-control" />
+							</div>
+						</div>
+						
+						<div class="form-group">
+							<label class="col-sm-3 control-label no-padding-right" >Razon Social</label>
+							<div class="col-sm-9">
+								<input type="text" id="txtrazonsocialediteditcliente"  name="txtrazonsocialediteditcliente"  onkeyup="mayusculas('txtrazonsocialediteditcliente')" placeholder="Ingrese Raz�n Social" class="form-control" />
+							</div>
+						</div>
+						<div class="form-group">
+							<label class="col-sm-3 control-label no-padding-right" > Direccion </label>
+							<div class="col-sm-9">
+								<input type="text" id="txtdireccionediteditcliente"  onkeyup="mayusculas('txtdireccionediteditcliente')" name="txtdireccionediteditcliente"placeholder="Ingrese Direcci�n" class="form-control" />
+							</div>
+						</div>
+						<div class="form-group">
+							<label class="col-sm-3 control-label no-padding-right"> RUC </label>
+							<div class="col-sm-9">
+								<input type="text" id="txtrucediteditcliente" name="txtrucediteditcliente" placeholder="Ingrese RUC" class="form-control" />
+							</div>
+						</div>
+						<div class="form-group">
+							<label class="col-sm-3 control-label no-padding-right"> Telefono </label>
+							<div class="col-sm-9">
+								<input type="text" id="txttelefonoediteditcliente" name="txttelefonoediteditcliente" placeholder="Ingrese Telefono" class="form-control  " />
+							</div>
+						</div>
+						<div class="form-group">
+							<label class="col-sm-3 control-label no-padding-right"> Email </label>
+							<div class="col-sm-9">
+								<input type="email" id="txtemailediteditcliente" name="txtemailediteditcliente" placeholder="Ingrese email" class="form-control" />
+							</div>
+						</div>
+						
+					</form>
+				</div>
+			</div>
+		</div>
+
+		<div id="dialog_addClienteeditcliente" class="hide">
+			<div class="row">
+				<div class="col-xs-12">
+					<!-- PAGE CONTENT BEGINS -->
+					 <form id="dialogformAddVerClienteeditcliente" class="form-horizontal" role="form">
+					   
+					   <div class="form-group">
+							<label class="col-sm-3 control-label no-padding-right">Nombre </label>
+							<div class="col-sm-9">
+								<input type="text" id="txtfechanacaddeditcliente" name="txtfechanacaddeditcliente" onkeyup="mayusculas('txtfechanacaddeditcliente')" placeholder="Ingrese Nombre" class="form-control" />
+							</div>
+						</div>
+						
+						<div class="form-group">
+							<label class="col-sm-3 control-label no-padding-right" >Razon Social</label>
+							<div class="col-sm-9">
+								<input type="text" id="txtrazonsocialaddeditcliente"  name="txtrazonsocialaddeditcliente"  onkeyup="mayusculas('txtrazonsocialaddeditcliente')" placeholder="Ingrese Razon Social" class="form-control" />
+							</div>
+						</div>
+						<div class="form-group">
+							<label class="col-sm-3 control-label no-padding-right" > Direccion </label>
+							<div class="col-sm-9">
+								<input type="text" id="txtdireccionaddeditcliente"  onkeyup="mayusculas('txtdireccionaddeditcliente')" name="txtdireccionaddeditcliente" placeholder="Ingrese Direccion" class="form-control" />
+							</div>
+						</div>
+						<div class="form-group">
+							<label class="col-sm-3 control-label no-padding-right"> RUC </label>
+							<div class="col-sm-9">
+								<input type="text" id="txtrucaddeditcliente" name="txtrucaddeditcliente" placeholder="Ingrese RUC" class="form-control" />
+							</div>
+						</div>
+						<div class="form-group">
+							<label class="col-sm-3 control-label no-padding-right"> Telefono </label>
+							<div class="col-sm-9">
+								<input type="text" id="txttelefonoaddeditcliente" name="txttelefonoaddeditcliente" placeholder="Ingrese Telefono" class="form-control  " />
+							</div>
+						</div>
+						<div class="form-group">
+							<label class="col-sm-3 control-label no-padding-right"> Email </label>
+							<div class="col-sm-9">
+								<input type="email" id="txtemailaddeditcliente" name="txtemailaddeditcliente" placeholder="Ingrese email" class="form-control" />
+							</div>
+						</div>
+						
+					</form>
+				</div>
+			</div>
+		</div>
+		
+
+		<script type="text/javascript">
+		
+		$('#dialogformEditVerClienteeditcliente').validate({
+			errorElement: 'span',
+			//errorClass: 'help-block',
+			focusInvalid: true,
+			ignore: "",
+			rules: {
+				txtrazonsocialediteditcliente: {
+					required: true
+				},
+				txtdireccionediteditcliente:{
+					required: true
+				},
+				txtrucediteditcliente:{
+					required:true,
+					number : true,
+					digits:true,
+					maxlength: 11,
+					minlength: 11
+					
+				},
+				txtemailediteditcliente:{
+					required: false,
+					email:true
+				},
+				txtfechanacediteditcliente:{
+					required: true
+		        }
+			},
+			messages: {
+				email: {
+					required: "Please provide a valid email.",
+					email: "Please provide a valid email."
+				},
+				password: {
+					required: "Please specify a password.",
+					minlength: "Please specify a secure password."
+				},
+			},
+			highlight: function (e) {
+				$(e).closest('.form-group').removeClass('has-info').addClass('has-error');
+			},
+			success: function (e) {
+				$(e).closest('.form-group').removeClass('has-error');//.addClass('has-info');
+				$(e).remove();
+			}
+			/*,
+
+			submitHandler: function (form) {
+				var hiddenvalorcliente=$("#hiddenvalorcliente").val();
+				ValidateEditarCliente(hiddenvalorcliente);
+			},
+			invalidHandler: function (form) {
+			}*/
+		});
+		
+		
+		$(".fecha").mask("99/99/9999");
+		
+		$(".sub_nuevoclientes").click(function() {
+
+			//removedialogo('dialog_editClienteeditcliente');
+		    //removedialogo('dialog-eliminar-validareditcliente');
+		    //removedialogo('dialog-eliminareditcliente');
+   
+		   // removedialogo('dialoggrabaclientenuevocliente');
+		
+			AbrirAddClienteeditcliente();
+			
+			
+
+		});
+		
+       //override dialog's title function to allow for HTML titles
+		$.widget("ui.dialog", $.extend({}, $.ui.dialog.prototype, {
+			_title: function(title) {
+				var $title = this.options.title || '&nbsp;'
+				if( ("title_html" in this.options) && this.options.title_html == true )
+					title.html($title);
+				else title.text($title);
+			}
+		}));
+		
+			
+			jQuery(function($) {
+
+				var grid_selectoreditcliente = "#grid-tableeditcliente";
+				var pager_selectoreditcliente = "#grid-pagereditcliente";
+				
+				//resize to fit page size
+				$(window).on('resize.jqGrid', function () {
+					$(grid_selectoreditcliente).jqGrid( 'setGridWidth', $(".page-content").width() );
+			    })
+				//resize on sidebar collapse/expand
+				var parent_column = $(grid_selectoreditcliente).closest('[class*="col-"]');
+				$(document).on('settings.ace.jqGrid' , function(ev, event_name, collapsed) {
+					if( event_name === 'sidebar_collapsed' || event_name === 'main_container_fixed' ) {
+						//setTimeout is for webkit only to give time for DOM changes and then redraw!!!
+						setTimeout(function() {
+							$(grid_selectoreditcliente).jqGrid( 'setGridWidth', parent_column.width() );
+						}, 0);
+					}
+			    })
+				
+
+				jQuery(grid_selectoreditcliente).jqGrid({
+					url : '/registro/clientes',
+					editurl : '', 
+					datatype : "json",
+					mtype : 'get',
+					height:'auto',
+					colNames:[' ',' ','C�DIGO','CLIENTE','RAZ�N SOCIAL','DIRECCI�N', 'RUC'],
+					colModel:[
+                        {name: 'id_cliente1',index :'id_cliente1',width : 15,editable:false,fixed : false, align:'center',sortable:false ,formatter:EditarClienteeditcliente},      
+                        {name: 'id_cliente2',index :'id_cliente2',width : 15,editable:false,fixed : false, align:'center',sortable:false ,formatter:EliminarClienteeditcliente}, 
+                        {name:'id_cliente',index:'id_cliente', hidden:true,width:'27%', sorttype:"int", editable: false},
+						{name:'cliente',index:'cliente',width:100,editable: false,editoptions:{size:"20",maxlength:"30"}},
+						{name:'razon_social',index:'razon_social',width:150,editable: false,editoptions:{size:"20",maxlength:"30"}},
+						{name:'direccion',index:'direccion',width:150,editable: false,editoptions:{size:"20",maxlength:"30"}},
+						{name:'ruc',index:'ruc', width:'100', sorttype:"int", editable: false}     
+					], 
+			
+					//viewrecords : true,
+					//rowNum:10,
+					//rowList:[10,20,30],
+					pager : pager_selectoreditcliente,
+					altRows: true,
+					rowList: [],        // disable page size dropdown
+				    pgbuttons: true,     // disable page control like next, back button
+				    pgtext: null,         // disable pager text like 'Page 0 of 10'
+				    rowNum:-1,
+				    viewrecords: true,
+				    gridComplete: function()
+				    {           
+				       $( '#prev_grid-pagereditcliente' ).hide();
+				       $( '#next_grid-pagereditcliente' ).hide();
+				       $( '#last_grid-pagereditcliente' ).hide();
+				       $( '#first_grid-pagereditcliente' ).hide();
+				       $( '#first_grid-pagereditcliente' ).hide();
+				       $( '.ui-separator' ).hide();
+
+				    },
+
+				});
+				$(window).triggerHandler('resize.jqGrid');//trigger window resize to make the grid get the correct size
+				
+				
+			
+				//enable search/filter toolbar
+				//jQuery(grid_selectoreditcliente).jqGrid('filterToolbar',{defaultSearch:true,stringResult:true})
+				//jQuery(grid_selectoreditcliente).filterToolbar({});
+			
+			
+				//switch element when editing inline
+				function aceSwitch( cellvalueeditcliente, options, cell ) {
+					setTimeout(function(){
+						$(cell) .find('input[type=checkbox]')
+							.addClass('ace ace-switch ace-switch-5')
+							.after('<span class="lbl"></span>');
+					}, 0);
+				}
+				
+			
+			
+				//navButtons
+				jQuery(grid_selectoreditcliente).jqGrid('navGrid',pager_selectoreditcliente,
+					{ 	//navbar options
+						edit: false,
+						editicon : 'ace-icon fa fa-pencil blue',
+						add: false,
+						addicon : 'ace-icon fa fa-plus-circle purple',
+						del: false,
+						delicon : 'ace-icon fa fa-trash-o red',
+						search: false,
+						searchicon : 'ace-icon fa fa-search orange',
+						refresh: true,
+						refreshicon : 'ace-icon fa fa-refresh green',
+						view: false,
+						viewicon : 'ace-icon fa fa-search-plus grey',
+					
+					}
+				)
+			
+
+			
+				function enableTooltips(table) {
+					$('.navtable .ui-pg-button').tooltip({container:'body'});
+					$(table).find('.ui-pg-div').tooltip({container:'body'});
+				}
+			
+				//var selr = jQuery(grid_selectoreditcliente).jqGrid('getGridParam','selrow');
+			
+				$(document).one('ajaxloadstart.page', function(e) {
+					$(grid_selectoreditcliente).jqGrid('GridUnload');
+					$('.ui-jqdialog').remove();
+				});
+			});
+			
+			function  LimpiarAddClienteeditcliente(){
+
+				$("#txtrazonsocialaddeditcliente").val('');
+			    $("#txtrucaddeditcliente").val('');
+			    $("#txttelefonoaddeditcliente").val('');
+			    $("#txtemailaddeditcliente").val('');
+			    $("#txtdireccionaddeditcliente").val('');
+			    $("#txtfechanacaddeditcliente").val(''); 
+				 
+		    }
+
+
+		    function  EditarClienteeditcliente(cellvalueeditcliente){
+				 return "<div  id="+cellvalueeditcliente+" class='ace-icon glyphicon glyphicon-pencil blue cursor-pointer'   title='Editar Cliente' onclick=AbrirEditarClienteeditcliente('"+cellvalueeditcliente+"');></div>";
+		    }
+				
+		    function  EliminarClienteeditcliente(cellvalueeditcliente){	
+				return "<div  id=div"+cellvalueeditcliente+"  class='ace-icon glyphicon glyphicon-trash red cursor-pointer' title='Eliminar Cliente' onclick=AbrirEliminarClienteeditcliente('"+cellvalueeditcliente+"');></div>";	  
+			}
+
+			//******nuevo cliente******///
+
+			function ValidateAddClienteeditcliente(valoreditcliente){
+
+			   var razon_socialeditcliente,ruceditcliente,telefonoeditcliente,emaileditcliente,direccioneditcliente,fecha_naceditcliente;
+				
+			    razonsocialeditcliente =$("#txtrazonsocialaddeditcliente").val();
+			    ruceditcliente = $.trim($("#txtrucaddeditcliente").val());
+			
+			    telefonoeditcliente =$.trim($("#txttelefonoaddeditcliente").val());
+			    emaileditcliente =$.trim($("#txtemailaddeditcliente").val());
+			    direccioneditcliente = $.trim($("#txtdireccionaddeditcliente").val());
+			    nomclienteeditcliente =$.trim($("#txtfechanacaddeditcliente").val()); 
+				
+				var mensajeeditcliente="";
+				if(razonsocialeditcliente== "" || ruceditcliente == "" || direccioneditcliente == ""){
+					 mensajeeditcliente +="Por favor ver:"+ '\n';
+					
+					 if(razonsocialeditcliente ==""){
+				          mensajeeditcliente +="-Ingrese Razon Social"+ '\n';
+				        }
+					 	
+					    if(ruceditcliente =="" || ruceditcliente =="0" ){
+				          mensajeeditcliente+="-Ingrese Ruc"+ '\n';
+				        }
+				        
+				        if(direccioneditcliente ==""){
+					          mensajeeditcliente+="-Ingrese Direccion"+ '\n';
+					        }
+
+						if(nomclienteeditcliente ==""){
+					          mensajeeditcliente+="-Ingrese Nombre del Cliente"+ '\n';
+					        }
+						
+				       alert(mensajeeditcliente);
+					  
+
+			   }else{
+			      $.ajax({
+					type : 'get',
+					dataType : 'text',	
+					url : '/registro/mantenimientocliente?id_cliente='+valoreditcliente+
+					'&razon_social='+razonsocialeditcliente+'&ruc='+ruceditcliente+'&telefono='+telefonoeditcliente+'&email='+emaileditcliente
+					+'&direccion='+direccioneditcliente+'&planta_cliente='+nomclienteeditcliente+'&flag=1',			
+					 beforeSend: function(){
+						  },
+					success : function(result) {
+						
+						LimpiarAddClienteeditcliente();
+						$("#dialog_addClienteeditcliente" ).dialog("close");
+						Recargar_grillaeditcliente() ;
+							
+					},
+					
+					error : function(xhr, ajaxOptions, thrownError) {
+						alert(xhr.status + ' ' + thrownError);
+					}
+				 });
+			  }	   
+		   }
+		   //*****fin nuevo cliente*******//
+
+		   function ValidateEditarClienteeditcliente(valoreditcliente){
+
+			   var razon_socialeditcliente,ruceditcliente,telefonoeditcliente,emaileditcliente,direccioneditcliente,fecha_naceditcliente;
+				
+			    razonsocialeditcliente =$("#txtrazonsocialediteditcliente").val();
+			    ruceditcliente = $.trim($("#txtrucediteditcliente").val());
+			
+			    telefonoeditcliente =$.trim($("#txttelefonoediteditcliente").val());
+			    emaileditcliente =$.trim($("#txtemailediteditcliente").val());
+			    direccioneditcliente = $.trim($("#txtdireccionediteditcliente").val());
+			    nomclienteeditcliente =$.trim($("#txtfechanacediteditcliente").val()); 
+				
+				var mensajeeditcliente="";
+				if(razonsocialeditcliente== "" || ruceditcliente == ""|| direccioneditcliente == ""){
+					 mensajeeditcliente +="Por favor ver:"+ '\n';
+					 if(razonsocialeditcliente ==""){
+				          mensajeeditcliente +="-Ingrese Raz�n Social"+ '\n';
+				        }
+					 	
+					    if(ruceditcliente =="0"){
+				          mensajeeditcliente+="-Ingrese Ruc"+ '\n';
+				        }
+				        
+				        if(direccioneditcliente ==""){
+					          mensajeeditcliente+="-Ingrese Direcci�n"+ '\n';
+					        }
+
+						if(nomclienteeditcliente ==""){
+					          mensajeeditcliente+="-Ingrese Nombre del Cliente"+ '\n';
+					        }
+						
+
+						
+				       alert(mensajeeditcliente);
+			   }else{
+			      $.ajax({
+					type : 'get',
+					dataType : 'text',	
+					url : '/registro/mantenimientocliente?id_cliente='+valoreditcliente+
+					'&razon_social='+razonsocialeditcliente+'&ruc='+ruceditcliente+'&telefono='+telefonoeditcliente+'&email='+emaileditcliente
+					+'&direccion='+direccioneditcliente+'&planta_cliente='+nomclienteeditcliente+'&flag=2',			
+					 beforeSend: function(){
+						  },
+					success : function(result) {
+						
+
+						Recargar_grillaeditcliente() ;
+							
+					},
+					
+					error : function(xhr, ajaxOptions, thrownError) {
+						alert(xhr.status + ' ' + thrownError);
+					}
+				 });
+			  }	   
+		   }
+		    
+		    //****nuevo cliente*******//
+
+			function AbrirAddClienteeditcliente(){
+
+			 $("#hiddenvalorclienteeditcliente").val("");   
+			 $('#dialog_addClienteeditcliente').dialog({ autoOpen: false });
+			 $("#dialog_addClienteeditcliente" ).dialog("destroy");
+			 $("#dialog_addClienteeditcliente" ).removeClass('hide').dialog({
+				resizable: false,
+				width: '560',
+				modal: true,
+				title : "<div class='widget-header widget-header-small'><h4 class='smaller'><i class='ace-icon fa fa-check'></i> Nuevo Cliente</h4></div>",
+				title_html: true, 
+				buttons: [
+							{
+								html : "<i class='ace-icon glyphicon glyphicon-pencil white'></i>&nbsp; Registrar",
+								"class" : "btn btn-primary btn-minier",
+								click: function() {
+									 bValid = $("#dialogformAddVerClienteeditcliente").valid();
+					                    if (bValid){
+					                    	
+											//$("#dialog_addClienteeditcliente" ).dialog("close");
+					                    	var hiddenvalorclienteeditcliente=$("#hiddenvalorclienteeditcliente").val();
+					        				
+											//ValidateEditarClienteeditcliente(hiddenvalorclienteeditcliente); 
+					        				  ValidateAddClienteeditcliente(hiddenvalorclienteeditcliente); 
+					                       
+					                   }
+								}
+							},
+							{
+								html: "<i class='ace-icon fa fa-times bigger-110'></i>&nbsp; Cancelar",
+										"class" : "btn btn-minier",
+								click: function() {
+									
+									 LimpiarAddClienteeditcliente();
+									 $("#dialog_addClienteeditcliente" ).dialog("close");
+								}
+							}
+						]				          
+					  })
+			}
+
+			//*************fin nuevo cliente***********//
+			
+			
+			function AbrirEditarClienteeditcliente(valoreditcliente,ruceditcliente){
+
+			 $("#hiddenvalorclienteeditcliente").val(valoreditcliente);   
+			 $('#dialog_editClienteeditcliente').dialog({ autoOpen: false });
+			 $("#dialog_editClienteeditcliente" ).dialog("destroy");
+			 $("#dialog_editClienteeditcliente" ).removeClass('hide').dialog({
+				resizable: false,
+				width: '560',
+				modal: true,
+				title : "<div class='widget-header widget-header-small'><h4 class='smaller'><i class='ace-icon fa fa-check'></i> Editar Cliente</h4></div>",
+				title_html: true, 
+				buttons: [
+							{
+								html : "<i class='ace-icon glyphicon glyphicon-pencil white'></i>&nbsp; Editar",
+								"class" : "btn btn-primary btn-minier",
+								click: function() {
+									 bValid = $("#dialogformEditVerClienteeditcliente").valid();
+					                    if (bValid){
+					                    	$("#dialog_editClienteeditcliente" ).dialog("close");
+					                    	var hiddenvalorclienteeditcliente=$("#hiddenvalorclienteeditcliente").val();
+					        				ValidateEditarClienteeditcliente(hiddenvalorclienteeditcliente); 
+					        				
+					                       
+					                   }
+								}
+							},
+							{
+								html: "<i class='ace-icon fa fa-times bigger-110'></i>&nbsp; Cancelar",
+										"class" : "btn btn-minier",
+								click: function() {
+									
+									 $("#dialog_editClienteeditcliente" ).dialog("close");
+								}
+							}
+						],
+				          open:function (){
+				        	  //********************
+						     // 'app/cliente/eliminar?id_cliente='+$("#DelData>td:nth-child(1)").text(),
+						      $.ajax({
+						    	type : 'get',
+								dataType : 'text',
+								url : '/registro/mostrarcliente?id_cliente='+valoreditcliente,
+							success : function(resulteditcliente) {		
+							
+							
+								    var json2editcliente =jQuery.parseJSON(resulteditcliente);
+								    $.each(json2editcliente, function(j, result2editcliente) {
+										$("#txtrazonsocialediteditcliente").val(result2editcliente['razon_social']);
+										$("#txtdireccionediteditcliente").val(result2editcliente['direccion']);
+										$("#txtrucediteditcliente").val(result2editcliente['ruc']);
+										$("#txttelefonoediteditcliente").val(result2editcliente['telefono']);
+										
+										$("#txtemailediteditcliente").val(result2editcliente['email']);
+										$("#txtfechanacediteditcliente").val(result2editcliente['cliente']);
+										
+										
+										
+								    });
+								    
+								},
+								
+								error : function(xhr, ajaxOptions, thrownError) {
+									alert(xhr.status + ' ' + thrownError);
+								}
+							});
+						      
+						      
+						      //********************
+				          }
+					  })
+			}
+				  
+				  function AbrirEliminarClienteeditcliente(valoreditcliente){
+					  
+					  $.ajax({
+							type : 'get',
+							dataType : 'text',
+							url : '/registro/verificarcliente?id_cliente='+valoreditcliente,
+							 beforeSend: function(){
+								  },
+							success : function(resulteditcliente) {
+								 var json2editcliente =jQuery.parseJSON(resulteditcliente);
+								    
+                                    $.each(json2editcliente, function(j, result2editcliente) {
+									var flageditcliente	=result2editcliente['mensaje'];
+									
+                                    if(flageditcliente ==  "1"){	
+										EliminarClientesinExitoeditcliente();
+									}else{
+										EliminarClienteExitoeditcliente(valoreditcliente);
+									}
+										
+								    });
+							},
+							
+							error : function(xhr, ajaxOptions, thrownError) {
+								alert(xhr.status + ' ' + thrownError);
+							}
+						});  
+				  }
+				  
+				  function EliminarClientesinExitoeditcliente(){
+					  $( "#dialog-eliminar-validareditcliente" ).removeClass('hide').dialog({
+							resizable: false,
+							width: '320',
+							modal: true,
+							title: "<div class='widget-header'><h4 class='smaller'><i class='ace-icon fa fa-exclamation-triangle red'></i> Registro de Clientes</h4></div>",
+							title_html: true,
+							buttons: [
+								{
+									html: "<i class='ace-icon fa fa-check bigger-110'></i>&nbsp; Aceptar",
+									"class" : "btn btn-danger btn-minier",
+									click: function() {
+										
+										 $("#dialog-eliminar-validareditcliente" ).dialog("close");
+									}
+								}
+								
+							],
+							error : function(xhr, ajaxOptions, thrownError) {
+								alert(xhr.status + ' ' + thrownError);
+							}
+						});
+					  
+				  }
+				  
+				  function EliminarClienteExitoeditcliente(valoreditcliente){
+
+						$( "#dialog-eliminareditcliente" ).removeClass('hide').dialog({
+							resizable: false,
+							width: '320',
+							modal: true,
+							title: "<div class='widget-header'><h4 class='smaller'><i class='ace-icon fa fa-exclamation-triangle red'></i> Eliminar Cliente</h4></div>",
+							title_html: true,
+							buttons: [
+								{
+									html: "<i class='ace-icon fa fa-trash-o bigger-110'></i>&nbsp; Eliminar",
+									"class" : "btn btn-danger btn-minier",
+									click: function() {
+										  $.ajax({
+												type : 'get',
+												dataType : 'text',
+												url : '/registro/mantenimientocliente?id_cliente='+valoreditcliente+'&flag=3',
+												 beforeSend: function(){
+													  },
+												success : function(resulteditcliente) {
+
+                                                                                                              													   
+													    $("#dialog-eliminareditcliente").dialog("close");
+
+														Recargar_grillaeditcliente() ;	
+                                                        
+                                                        	
+												},
+												
+												error : function(xhr, ajaxOptions, thrownError) {
+													alert(xhr.status + ' ' + thrownError);
+												}
+											});
+										
+									}
+								}
+								,
+								{
+									html: "<i class='ace-icon fa fa-times bigger-110'></i>&nbsp; Cancelar",
+									"class" : "btn btn-minier",
+									click: function() {
+										$( this ).dialog( "close" );
+									}
+								}
+							]
+						}); 
+					  
+				  }
+				  
+				  
+				  function Recargar_grillaeditcliente() {
+					  $("#grid-tableeditcliente").jqGrid({
+										page:1,
+										url : '/registro/clientes',
+										datatype : "json"
+									}).trigger("reloadGrid");
+							
+							return [ true, '' ]; 
+				  }
+		</script>
+
+	

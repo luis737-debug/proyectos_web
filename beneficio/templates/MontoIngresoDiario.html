@@ -1,0 +1,1162 @@
+	<form class="cmxform" id="generarMontoIngresoForm"  autocomplete="off">
+<!-- /section:settings.box -->
+<div class="page-header">
+	<h1>
+		Monto Ingreso Diario <small> <i
+			class="ace-icon fa fa-angle-double-right"></i> Registrar Monto Ingreso Diario
+		</small>
+	</h1>
+</div>
+<!-- /.page-header -->
+
+										
+<div class="row">
+		<input class="form-control" id="txtcodigo_aleatoriogenfac" type="hidden" />
+		<input class="form-control" id="hiddenvalorgenfac" type="hidden" />
+		
+												
+												<div class="col-xs-4">
+													<div class="form-group clearfix">
+														<label class="col-sm-3 control-label no-padding-right"  > Fecha </label>
+
+														<div class="col-sm-9">
+														
+																						
+															<input type="text" id="txtfechaingreso" name="txtfechaingreso" placeholder="Ingrese Fecha"  class="form-control fecha {dateFactura:true}"/>
+															
+														</div>
+													</div>
+												</div>
+			
+		</div>
+		
+
+		<!-- #dialog-message -->
+
+		
+		<hr />
+		<div class="form-group">
+			<div class="row">
+				<div class="col-xs-1">
+						<!-- <button onclick="AgregarNuevoIngreso();"class="btn btn-info  btn-sm btn-primary">
+							<i class="ace-icon fa fa-plus-circle align-top bigger-125"></i>
+							&nbsp;Agregar Registro
+						</button>-->
+						<input type="button"  id=btningreso class="btn btn-info  btn-sm btn-primary" value="+ Registro" onclick="AgregarNuevoIngreso();" disabled />
+											
+				</div>
+								
+	
+			</div>
+		</div>
+											
+		<table id="grid-tableingreso"></table>
+		<div id="grid-pagergenfac"></div>
+		<br />
+		
+		<div class="col-xs-5">
+				<a href="#">
+					<input type="button" class="btn btn-info  btn-sm btn-primary" value="Nueva Ingreso" onclick="cerrarIngreso();">
+						<!--  <i class="glyphicon glyphicon-off align-top bigger-125"></i>
+						&nbsp;Cerrar Factura
+					</button>-->
+				</a>
+	    </div>
+		<div  >
+
+				<table 	 id="txt_calculados"  align="right" border="3" >
+					<tbody>
+					     
+						<tr>
+							<td valign=top ><div    id="txtvalor1" ></div>
+																		
+								
+						</tr>
+						
+					</tbody>
+				</table>
+				
+			</div>
+						
+		<!-- PAGE CONTENT ENDS -->
+	
+	<!-- /.col -->
+<!-- /.row -->
+
+<!--  dialogs -->
+
+		
+</form>			
+<!-- fn/dialogs -->
+
+<div id="prueba"></div>
+<!--  dialogs -->
+
+<!--  Editar Registro -->
+
+
+<div id="dialog_ediTmpDetalleFacgenfac" class="hide">
+<form id="dialogformEditProductogenfac">
+	<div class="row">
+		<div class="col-xs-12 ">
+			<!-- PAGE CONTENT BEGINS -->
+			
+			 <div class="form-group clearfix">
+					<label class="col-sm-3 control-label no-padding-right"  > Cliente </label>
+
+						<div class="col-sm-9">
+							<select class="form-control"    id="cmbclienteingresoedit"
+											 name="cmbclienteingresoedit" disabled  ></select>
+						</div>
+			     </div>
+			     
+				<div class="form-group clearfix">
+					<label class="col-sm-3 control-label no-padding-right">Monto
+					</label>
+					<div class="col-sm-9">
+						<input type="hidden" id="txtidclienteedithiddengenfac" />
+						 <input
+							type="text" id="txtcantidadingresoeditgenfac" name="txtcantidadingresoeditgenfac" placeholder="Ingrese Monto"
+							class="form-control" />
+					</div>
+				</div>
+				<div class="form-group clearfix">
+					<label class="col-sm-3 control-label no-padding-right">Descripcion
+					</label>
+					<div class="col-sm-9">
+						<input type="text" id="txtcantidadingresodetedit" name="txtcantidadingresodetedit" placeholder="Descripcion"
+							class="form-control" />
+					</div>
+				</div>
+				
+				<div class="form-group clearfix">
+					<label class="col-sm-3 control-label no-padding-right">NRO RECIBO
+					</label>
+					<div class="col-sm-9">
+						<input type="text" id="txtnroboletaedit" name="txtnroboletaedit" placeholder="Ingrese Nro Recibo"
+							class="form-control" />
+					</div>
+				</div>
+				
+								
+		</div>
+	</div>
+  </form>
+</div>
+
+
+<div id="dialog-eliminargenfac" class="hide">
+			<div class="alert alert-info bigger-110 del-table-bottom">
+				Desea eliminar el siguiente registro?
+			</div>
+</div>
+		
+<!--  Agregar Registro -->
+
+<div id="dialog_AgregarNuevoIngreso" class="hide">
+<form id="dialogformNuevoIngreso">
+	<div class="row">
+		<div class="col-xs-12 ">
+			<!-- PAGE CONTENT BEGINS -->
+			
+			     <div class="form-group clearfix">
+					<label class="col-sm-3 control-label no-padding-right"  > Cliente </label>
+
+						<div class="col-sm-9">
+							<select class="form-control"   id="cmbclienteingreso"
+											 name="cmbclienteingreso"></select>
+						</div>
+			     </div>
+													
+				<div class="form-group clearfix">
+					<label class="col-sm-3 control-label no-padding-right">Monto
+					</label>
+					<div class="col-sm-9">
+						<input type="hidden" id="txtidclientehiddengenfac" /> 
+						<input type="text" id="txtcantidadingreso" name="txtcantidadingreso" placeholder="Ingrese Monto"
+							class="form-control" />
+					</div>
+				</div>
+				<div class="form-group clearfix">
+					<label class="col-sm-3 control-label no-padding-right">Descripcion
+					</label>
+					<div class="col-sm-9">
+						<input type="text" id="txtcantidadingresodet" name="txtcantidadingresodet" placeholder="Ingrese descripcion"
+							class="form-control" />
+					</div>
+				</div>
+				
+				<div class="form-group clearfix">
+					<label class="col-sm-3 control-label no-padding-right">NRO RECIBO
+					</label>
+					<div class="col-sm-9">
+						<input type="text" id="txtnroboleta" name="txtnroboleta" placeholder="Ingrese Nro Recibo"
+							class="form-control" />
+					</div>
+				</div>
+				
+		</div>
+		
+		
+	</div>
+	</form>
+</div>
+<!-- fn/dialogs -->
+
+
+<!--// funciones-->
+<script type="text/javascript">
+$(document).ready(function(){ 
+	
+	
+	$("#txtcantidadingreso").keydown(function(event) {
+		numerospuntos(event)
+	});
+	
+		
+	
+});
+	
+$(".select2").css('width','200px').select2({allowClear:true})
+.on('change', function(){
+	$(this).closest('form').validate().element($(this));
+}); 
+
+$.validator.addMethod("valueNotEquals", function(value, element, arg){
+	  return arg != value;
+	 }, "Por Favor seleccione un cliente");
+
+
+
+$('#dialogformNuevoIngreso').validate({
+	errorElement: 'span',
+	//errorClass: 'help-block',
+	focusInvalid: true,
+	ignore: "",
+	rules: {
+		txtcantidadingreso: {
+			required: true
+		},
+		
+		cmbclienteingreso:{
+			required: true,
+			valueNotEquals: "0" 
+		}	
+	},
+	highlight: function (e) {
+		$(e).closest('.form-group').removeClass('has-info').addClass('has-error');
+	},
+
+	success: function (e) {
+		$(e).closest('.form-group').removeClass('has-error');//.addClass('has-info');
+		$(e).remove();
+	},
+	errorPlacement: function (error, element) {
+		if(element.is('input[type=checkbox]') || element.is('input[type=radio]')) {
+			var controls = element.closest('div[class*="col-"]');
+			if(controls.find(':checkbox,:radio').length > 1) controls.append(error);
+			else error.insertAfter(element.nextAll('.lbl:eq(0)').eq(0));
+		}
+		else if(element.is('.select2')) {
+			error.insertAfter(element.siblings('[class*="select2-container"]:eq(0)'));
+		}
+		else if(element.is('.chosen-select')) {
+			error.insertAfter(element.siblings('[class*="chosen-container"]:eq(0)'));
+		}
+		else error.insertAfter(element);
+	}
+});
+
+$('#dialogformEditProductogenfac').validate({
+	errorElement: 'span',
+	//errorClass: 'help-block',
+	focusInvalid: true,
+	ignore: "",
+	rules: {
+		txtcantidadingresoeditgenfac: {
+			required: true
+		},
+		
+		cmbclienteingresoedit: {
+			required: true,
+			valueNotEquals: "0" 
+			
+		}		
+	},
+		
+	highlight: function (e) {
+		$(e).closest('.form-group').removeClass('has-info').addClass('has-error');
+	},
+
+	success: function (e) {
+		$(e).closest('.form-group').removeClass('has-error');//.addClass('has-info');
+		$(e).remove();
+	},
+	errorPlacement: function (error, element) {
+		if(element.is('input[type=checkbox]') || element.is('input[type=radio]')) {
+			var controls = element.closest('div[class*="col-"]');
+			if(controls.find(':checkbox,:radio').length > 1) controls.append(error);
+			else error.insertAfter(element.nextAll('.lbl:eq(0)').eq(0));
+		}
+		else if(element.is('.select2')) {
+			error.insertAfter(element.siblings('[class*="select2-container"]:eq(0)'));
+		}
+		else if(element.is('.chosen-select')) {
+			error.insertAfter(element.siblings('[class*="chosen-container"]:eq(0)'));
+		}
+		else error.insertAfter(element);
+	}
+});
+
+
+
+$('#generarMontoIngresoForm').validate({
+	errorElement: 'span',
+	//errorClass: 'help-block',
+	focusInvalid: true,
+	ignore: "",
+	rules: {
+		
+		    txtfechaingreso: {
+			required: true,
+			dateFactura: true
+		}
+	},
+		
+	highlight: function (e) {
+		$(e).closest('.form-group').removeClass('has-info').addClass('has-error');
+	},
+
+	success: function (e) {
+		$(e).closest('.form-group').removeClass('has-error');//.addClass('has-info');
+		$(e).remove();
+	},
+	errorPlacement: function (error, element) {
+		if(element.is('input[type=checkbox]') || element.is('input[type=radio]')) {
+			var controls = element.closest('div[class*="col-"]');
+			if(controls.find(':checkbox,:radio').length > 1) controls.append(error);
+			else error.insertAfter(element.nextAll('.lbl:eq(0)').eq(0));
+		}
+		else if(element.is('.select2')) {
+			error.insertAfter(element.siblings('[class*="select2-container"]:eq(0)'));
+		}
+		else if(element.is('.chosen-select')) {
+			error.insertAfter(element.siblings('[class*="chosen-container"]:eq(0)'));
+		}
+		else error.insertAfter(element);
+	},	
+	submitHandler: function (form) {
+		//alert(form.attr("id"))
+		//grabarFacturagenfac();
+		var txtfechaingreso = $("#txtfechaingreso").val();
+		
+		$('#btningreso').focus();
+		
+		$("#txtfechaingreso").attr("readonly","readonly");
+        $("#txtfechaingreso").addClass("readOnly");
+        
+        $("#btningreso").removeAttr("disabled");
+		
+		Recargar_grillaIngreso_1(txtfechaingreso);
+		
+		Calculo(txtfechaingreso);
+				
+	},
+	invalidHandler: function (form) {
+	}
+});
+
+$(".fecha").mask("99/99/9999");
+
+    var grid_tablegenfac = jQuery("#grid-tableingreso");	
+    
+		
+		
+	
+	function ListarComboClientegenfac2() {
+
+		$.ajax({
+					type : 'get',
+					dataType : 'json',
+					url : '/beneficio/comboCliente2',
+					success : function(resultgenfac2) {
+
+						combo_clientegenfac2 = resultgenfac2;
+						/*alert(resultgenfac);*/
+
+						$('#cmbclienteingreso').empty();
+						$('#cmbclienteingresoedit').empty();
+
+						$.each(combo_clientegenfac2, function(key, value) {
+							$('#cmbclienteingreso').append('<option value="' + value.id_planta + '">' + value.planta_cliente + '</option>');
+							$('#cmbclienteingresoedit').append('<option value="' + value.id_planta + '">' + value.planta_cliente + '</option>');
+						});
+						
+					},
+					error : function(xhr, ajaxOptions, thrownError) {
+						alert(xhr.status + ' ' + thrownError);
+					}
+				});
+
+	}
+
+	//nuevo producto
+function AgregarProducto(){
+	
+	
+	var txtfechaingreso =$("#txtfechaingreso").val();
+    var cmbclienteingreso =$.trim($("#cmbclienteingreso").val());
+    var txtcantidadingreso =$.trim($("#txtcantidadingreso").val());   
+    var txtcantidadingresodet =$.trim($("#txtcantidadingresodet").val());
+    
+    var txtnroboleta =$.trim($("#txtnroboleta").val());
+    
+  	  
+   
+	var mensajegenfac="";
+	
+	if(txtfechaingreso=="" || cmbclienteingreso== 0 || txtcantidadingreso == "" ){
+		 mensajegenfac +="Por favor:"+ '\n';
+		 if(cmbclienteingreso =="0"){
+	          mensajegenfac +="-Seleccione Cliente"+ '\n';
+	        }
+		 	
+		    
+	        if(txtcantidadingreso ==""){
+	          mensajegenfac+="-Ingrese Cantidad"+ '\n';
+	        }
+	        
+	        
+	        if(txtfechaingreso ==""){
+		          mensajegenfac+="-Ingrese Fecha"+ '\n';
+		        }
+	        
+	       alert(mensajegenfac);
+	              
+	}else{
+		 // alert(precio_unitariogenfac);
+		$.ajax({
+					type : 'get',
+					dataType : 'text',
+					url : '/beneficio/grabarmontoingreso?id_ingreso=0&flag=1'
+							+ '&txtfechaingreso='
+							+ txtfechaingreso
+							+ '&cmbclienteingreso='
+							+ cmbclienteingreso
+							+ '&txtcantidadingreso='
+							+ txtcantidadingreso
+							+'&txtcantidadingresodet='
+							+ escape(txtcantidadingresodet)
+							+'&txtnroboleta='
+							+ escape(txtnroboleta),
+							
+					beforeSend : function() {
+					},
+					success : function(resultgenfac) {
+						
+						limpiar_dialog_nuevoingreso();
+						
+						Recargar_grillaIngreso_1(txtfechaingreso);
+						
+						Calculo(txtfechaingreso);
+
+						$("#dialog_AgregarNuevoIngreso").dialog("close");
+					},
+
+					error : function(xhr,
+							ajaxOptions,
+							thrownError) {
+						alert(xhr.status
+								+ ' '
+								+ thrownError);
+					}
+				});
+			}
+	
+	
+}
+	function AgregarNuevoIngreso() {
+		var txtidclientehiddengenfac = $("#cmbclienteingreso").val();
+		
+		$("#dialog_AgregarNuevoIngreso").dialog({
+			autoOpen : false
+		});
+		
+		
+		$("#dialog_AgregarNuevoIngreso").dialog("destroy");
+		$("#txtidclientehiddengenfacgenfac").val(txtidclientehiddengenfac);
+		$("#dialog_AgregarNuevoIngreso")
+				.removeClass('hide')
+				.dialog(
+						{
+							resizable : false,
+							width : '560',
+							modal : true,
+							title : "<div class='widget-header widget-header-small'><h4 class='smaller'><i class='ace-icon fa fa-check'></i> Agregar Registro</h4></div>",
+							title_html : true,
+							buttons : [
+									
+									{
+										html : "<i class='glyphicon glyphicon-floppy-disk align-top bigger-125'></i>&nbsp; Grabar",
+										"class" : "btn btn-primary btn-minier",
+									    form:"dialogformNuevoIngreso",
+									    click: function() {
+										     bValid = $("#dialogformNuevoIngreso").valid();
+						                     if (bValid ){
+						                    	 
+						                    	 AgregarProducto();
+						                    	 						                     }
+									     }
+									},
+									
+									
+									{
+										html : "<i class='ace-icon fa fa-times bigger-110'></i>&nbsp; Cancelar",
+										"class" : "btn btn-minier",
+										click : function() {
+											$(this).dialog("close");
+											
+										}
+									} ],
+							open : function() {
+								//********************
+								// '/sgpc/app/cliente/eliminar?id_cliente='+$("#DelData>td:nth-child(1)").text(),
+								//$("#cmbproductoingreso").prop('selectedIndex', 1);
+								
+							}
+						})
+	}
+
+	jQuery(function($) {
+		
+		
+		ListarComboClientegenfac2();
+				
+			
+		$('#sidebar2').insertBefore('.page-content');
+		$('.navbar-toggle[data-target="#sidebar2"]').insertAfter(
+				'#menu-toggler');
+		$(document).on('settings.ace.two_menu',
+				function(e, event_name, event_val) {
+					if (event_name == 'sidebar_fixed') {
+						if ($('#sidebar').hasClass('sidebar-fixed')) {
+							$('#sidebar2').addClass('sidebar-fixed');
+							$('#navbar').addClass('h-navbar');
+						} else {
+							$('#sidebar2').removeClass('sidebar-fixed')
+							$('#navbar').removeClass('h-navbar');
+						}
+					}
+				}).triggerHandler('settings.ace.two_menu',
+				[ 'sidebar_fixed', $('#sidebar').hasClass('sidebar-fixed') ]);
+
+		$.widget("ui.dialog", $.extend({}, $.ui.dialog.prototype, {
+			_title : function(title) {
+				var $title = this.options.title || '&nbsp;'
+				if (("title_html" in this.options)
+						&& this.options.title_html == true)
+					title.html($title);
+				else
+					title.text($title);
+			}
+		}));
+
+	});
+
+   
+
+	jQuery(function($) {
+
+
+		var grid_selectoringreso = "#grid-tableingreso";
+		var pager_selectoringreso = "#grid-pagergenfac";
+	
+		//resize to fit page size
+		$(window).on(
+				'resize.jqGrid',
+				function() {
+					$(grid_selectoringreso).jqGrid('setGridWidth',
+							$(".page-content").width());
+				})
+		//resize on sidebar collapse/expand
+		var parent_column = $(grid_selectoringreso).closest('[class*="col-"]');
+		$(document).on(
+				'settings.ace.jqGrid',
+				function(ev, event_name, collapsed) {
+					if (event_name === 'sidebar_collapsed'
+							|| event_name === 'main_container_fixed') {
+						//setTimeout is for webkit only to give time for DOM changes and then redraw!!!
+						setTimeout(function() {
+							$(grid_selectoringreso).jqGrid('setGridWidth',
+									parent_column.width());
+						}, 0);
+					}
+				})
+
+		
+		
+		function  EditarTmpDetallegenfac(cellvaluegenfac){
+	    	
+			   return "<div class='ace-icon glyphicon glyphicon-pencil blue cursor-pointer'   title='Editar Cliente' onclick=AbrirEditarTmpDetallegenfac('"+cellvaluegenfac
+
++"');></div>";
+		}
+		
+		
+		  function  EliminarTmpDetallegenfac(cellvaluegenfac){	
+			  	return "<div class='ace-icon glyphicon glyphicon-trash red cursor-pointer' title='Eliminar Cliente' onclick=AbrirEliminarTmpDetallegenfac('"+cellvaluegenfac
+
++"');></div>";	  
+			  }
+		  
+		  function Fmatternumber(cellvalue, options, rowObject)
+		  {
+						var cantm = cellvalue;
+					    var elem = cantm.split('.');
+							  entero = elem[0];
+							  decimal = elem[1];
+							var count_element = decimal.length
+						if(count_element =="1" || decimal == "0" || decimal == "00"){
+								
+								//var newnumero=cantm.substring(0, cantm.indexOf(".")).toLowerCase();
+								//cellvalue=newnumero;
+								 return cellvalue;
+							}else{
+								return cellvalue;}
+			}
+			
+		  // grilla
+		  
+		jQuery(grid_selectoringreso)
+				.jqGrid(
+						{
+							url : '/beneficio/listarDetalleMontoIngreso?fecha_ingreso=',
+							editurl : '',
+							datatype : "json",
+							mtype : 'get',
+							colNames : [ ' ', ' ', 'MONTO','DESCRIPCION', 'CLIENTE','NRO RECIBO'],
+							colModel : [ {
+								name : 'id_monto_ingreso',
+								index :'id_monto_ingreso',
+								width : 3,
+								editable : false,
+								fixed : false,
+								align : 'center',
+								sortable : false,
+								formatter : EditarTmpDetalleIngreso
+							}, {
+								name : 'id_monto_ingreso',
+								index :'id_monto_ingreso',
+								width : 3,
+								editable : false,
+								fixed : false,
+								align : 'center',
+								sortable : false,
+								formatter : EliminarTmpDetallegenfacFactura
+							},
+
+							{
+								name : 'cantidad',
+								index : 'cantidad',
+								width : "20%",
+								sorttype : 'number',
+								editable : false
+								
+							},
+							{
+								name : 'descripcion',
+								index :'descripcion',
+								width : "20%",
+								editable : false								
+							},
+							 
+							{
+								name : 'cliente',
+								index :'cliente',
+								width : "30%",
+								sorttype : "int",
+								editable : false
+
+							},
+							{
+								name : 'codigo_boleta',
+								index :'codigo_boleta',
+								width : "20%",
+								editable : false
+
+							}
+							],
+						
+							pager : pager_selectoringreso,
+							altRows: true,
+							rowList: [],        // disable page size dropdown
+						    pgbuttons: true,     // disable page control like next, back button
+						    pgtext: null,         // disable pager text like 'Page 0 of 10'
+						    viewrecords: true,
+						    height:200,
+						   
+						    gridComplete: function()
+						    {           
+						       $( '#prev_grid-pagergenfac' ).hide();
+						       $( '#next_grid-pagergenfac' ).hide();
+						       $( '#last_grid-pagergenfac' ).hide();
+						       $( '#first_grid-pagergenfac' ).hide();
+						       $( '#first_grid-pagergenfac' ).hide();
+						       $( '.ui-separator' ).hide();
+						       
+						      					             
+						    },
+							loadComplete: function(data){
+			                	//calculateTotalgenfac();
+			                }
+						});
+
+					  
+		$(window).triggerHandler('resize.jqGrid');//trigger window resize to make the grid get the correct size
+
+		//navButtons
+		jQuery(grid_selectoringreso).jqGrid(
+				'navGrid',
+				pager_selectoringreso,
+				{ //navbar options
+					edit : false,
+					editicon : 'ace-icon fa fa-pencil blue',
+					add : false,
+					addicon : 'ace-icon fa fa-plus-circle purple',
+					del : false,
+					delicon : 'ace-icon fa fa-trash-o red',
+					search : false,
+					searchicon : 'ace-icon fa fa-search orange',
+					refresh : true,
+					refreshicon : 'ace-icon fa fa-refresh green',
+					view : false,
+					viewicon : 'ace-icon fa fa-search-plus grey',
+				},
+				{
+					//edit record form
+					//closeAfterEdit: true,
+					//width: 700,
+					recreateForm : true,
+					beforeShowForm : function(e) {
+						var form = $(e[0]);
+						form.closest('.ui-jqdialog').find(
+								'.ui-jqdialog-titlebar').wrapInner(
+								'<div class="widget-header" />')
+						style_edit_form(form);
+					}
+				},
+				{
+					//new record form
+					//width: 700,
+					closeAfterAdd : true,
+					recreateForm : true,
+					viewPagerButtons : false,
+					beforeShowForm : function(e) {
+						var form = $(e[0]);
+						form.closest('.ui-jqdialog').find(
+								'.ui-jqdialog-titlebar').wrapInner(
+								'<div class="widget-header" />')
+						style_edit_form(form);
+					}
+				},
+				{
+					//delete record form
+					recreateForm : true,
+					beforeShowForm : function(e) {
+						var form = $(e[0]);
+						if (form.data('styled'))
+							return false;
+
+						form.closest('.ui-jqdialog').find(
+								'.ui-jqdialog-titlebar').wrapInner(
+								'<div class="widget-header" />')
+						style_delete_form(form);
+
+						form.data('styled', true);
+					},
+					onClick : function(e) {
+						alert(1);
+					}
+				},
+				{
+					//search form
+					recreateForm : true,
+					afterShowSearch : function(e) {
+						var form = $(e[0]);
+						form.closest('.ui-jqdialog').find('.ui-jqdialog-title')
+								.wrap('<div class="widget-header" />')
+						style_search_form(form);
+					},
+					afterRedraw : function() {
+						style_search_filters($(this));
+					},
+					multipleSearch : true,
+				/**
+				multipleGroup:true,
+				showQuery: true
+				 */
+				},
+				{
+					//view record form
+					recreateForm : true,
+					beforeShowForm : function(e) {
+						var form = $(e[0]);
+						form.closest('.ui-jqdialog').find('.ui-jqdialog-title')
+								.wrap('<div class="widget-header" />')
+					}
+				})
+
+	});
+
+	function Recargar_grillaIngreso_1(txtfechaingreso) {
+		
+		$("#grid-tableingreso").jqGrid("setGridParam",
+						{
+							page : 1,
+							url : '/beneficio/listarDetalleMontoIngreso?fecha_ingreso='+ txtfechaingreso,
+							datatype : "json"
+						}).trigger("reloadGrid");
+
+		return [ true, '' ];
+	}
+
+	function limpiar_dialog_nuevoingreso() {
+		
+	    $("#txtcantidadingreso").val('');
+	    $("#cmbclienteingreso").prop('selectedIndex', 0);
+		$("#txtcantidadingresodet").val('');
+		$("#txtnroboleta").val('');
+		
+	}
+	
+function limpiar_dialog_editingreso() {
+		
+	    $("#txtcantidadingresoeditgenfac").val('');
+	  
+		$("#cmbclienteingresoedit").prop('selectedIndex', 0);
+		
+		$("#txtcantidadingresodet").val('');
+		
+		$("#txtnroboletaedit").val('');
+		
+   		
+	}
+
+	function EditarTmpDetalleIngreso(cellvalue, options, rowObject) {
+		
+		return "<div class='ace-icon glyphicon glyphicon-pencil blue' title='Editar Registro' onclick=AbrirEdiTmpDetalleIngreso('"
+				+ cellvalue + "');></div>";
+	}
+
+	function EliminarTmpDetallegenfacFactura(cellvalue, options, rowObject) {
+		return "<div class='ace-icon glyphicon glyphicon-trash red' title='Eliminar Registro' onclick=AbrirEliTmpDetalleFac('"
+				+ cellvalue + "');></div>";
+	}
+
+	function Calculo(fecha) {
+		
+			
+		$.ajax({
+			type : 'get',
+			dataType : 'json',
+			url : '/beneficio/calculo_ingreso?fecha='+ fecha,
+			beforeSend : function() {
+			},
+			success : function(resultgenfac) {
+				
+				var jsongenfac_ = resultgenfac;
+				$.each(jsongenfac_, function(j, resultgenfac) {
+					
+					//Planta
+					var total_ingreso     = resultgenfac['monto_ingreso'];
+									
+										
+					$("#txtvalor1").html('<b>TOTAL INGRESO :</b><font size=3 color=blue><b>'+total_ingreso+'</b></font>');
+			
+					
+				});
+			},
+
+			error : function(xhr, ajaxOptions, thrownError) {
+				alert(xhr.status + ' ' + thrownError);
+			}
+		});
+	}
+	
+
+	function limpiarClientegenfac()
+	{
+		/*var combocliente =$("#cmbclienteingreso").val();
+		if(combocliente == 0){
+			$("#txtdirecciongenfac").val("");
+			$("#txtrucgenfac").val("");
+		}*/
+	}
+	
+	
+	
+	function imprimirgenfac(id_factura)
+	{  
+		 
+		  
+		  $('#dialog_confirmformatogenfac').dialog({ autoOpen: false });
+		  $("#dialog_confirmformatogenfac" ).dialog("destroy");
+		 
+		  $("#dialog_confirmformatogenfac" ).removeClass('hide').dialog({
+			    resizable: false,
+				width: '360',
+				height:'180',
+				modal: true,
+				title : "<div class='widget-header widget-header-small'><h4 class='smaller'><i class='ace-icon fa fa-check'></i> Elecci�n de Formato</h4></div>",
+				title_html: true, 
+	            buttons: [
+						{
+							html : "<i class='ace-icon glyphicon glyphicon-ok white'></i>&nbsp; Aceptar",
+							"class" : "btn btn-primary btn-minier",
+							click: function() {
+								var formato= document.getElementById('select-formatogenfac').value;
+								var url = "/sgpc/app/imprimirFactura/imprimir?id_factura="+id_factura+'&formato='+formato;
+								var iframe=null;			
+								    iframe = $('<iframe  id="impresiontt"  frameborder="0" src="'+ url +'"  />');					
+								    iframe.dialog({
+								                   autoOpen : true,
+								                   title : "Factura",
+								                   width : 620,
+								                   height : 660,
+								                   modal : true,
+								                   title: "<div id='impresiondiv' class='widget-header'><h4 class='smaller'><i class='ace-icon fa fa-print blue'></i> Vista previa de Factura - Formato"+formato+"</h4></div>",
+												   title_html: true,
+								                   resizable : true
+								    }).width(600).height(322);
+								
+								  
+							}
+						}
+						,
+						{
+							html: "<i class='ace-icon fa fa-times bigger-110'></i>&nbsp; Cancelar",
+							"class" : "btn btn-minier",
+							click: function() {
+								$( this ).dialog( "close" );
+							}
+						}
+			   ],
+	           open:function (){
+	           }	
+		  })			
+	}
+	
+	//editar producto
+	function EditarProductogenfac(valorgenfac){
+		
+		
+		var txtfechaingreso =$("#txtfechaingreso").val();
+	    var cmbclienteingreso =$.trim($("#cmbclienteingresoedit").val());
+	    var txtcantidadingreso =$.trim($("#txtcantidadingresoeditgenfac").val());
+	   
+	    var txtcantidadingresodet =$.trim($("#txtcantidadingresodetedit").val());
+	    var txtnroboleta          =$.trim($("#txtnroboletaedit").val());
+	    
+	
+		$.ajax({
+					type : 'get',
+					dataType : 'text',
+					url : '/beneficio/grabarmontoingreso?id_ingreso='+valorgenfac+'&flag=2'
+						+ '&txtfechaingreso='
+						+ txtfechaingreso
+						+ '&cmbclienteingreso='
+						+ cmbclienteingreso
+						+ '&txtcantidadingreso='
+						+ txtcantidadingreso
+						+ '&txtcantidadingresodet='
+						+ txtcantidadingresodet
+						+ '&txtnroboleta='
+						+ txtnroboleta,
+					beforeSend : function() {
+					},
+					success : function(
+							resultgenfac) {
+						
+						$("#dialog_ediTmpDetalleFacgenfac").dialog("close");
+						
+						  Recargar_grillaIngreso_1(txtfechaingreso);
+						
+						  Calculo(txtfechaingreso);
+						
+					},
+
+					error : function(xhr,
+							ajaxOptions,
+							thrownError) {
+						alert(xhr.status
+								+ ' '
+								+ thrownError);
+					}
+				});
+		
+	}
+	
+	function AbrirEdiTmpDetalleIngreso(idreg) {
+		
+	    $("#hiddenvalorgenfac").val(idreg);
+	    
+		$("#dialog_ediTmpDetalleFacgenfac").dialog({
+			autoOpen : false
+		});
+		$("#dialog_ediTmpDetalleFacgenfac").dialog("destroy");
+
+		$("#dialog_ediTmpDetalleFacgenfac")
+				.removeClass('hide')
+				.dialog(
+						{
+							resizable : false,
+							width : '560',
+							modal : true,
+							title : "<div class='widget-header widget-header-small'><h4 class='smaller'><i class='ace-icon fa fa-check'></i> Editar Producto</h4></div>",
+							title_html : true,
+							buttons : [
+									{
+									    html : "<i class='ace-icon glyphicon glyphicon-pencil white'></i>&nbsp; Editar",
+										"class" : "btn btn-primary btn-minier",
+									    form:"dialogformEditProductogenfac",
+									    click: function() {
+										     bValidgenfac = $("#dialogformEditProductogenfac").valid();
+									         if (bValidgenfac ){
+									        	 
+									        	 var hiddenvalorgenfac=$("#hiddenvalorgenfac").val();
+									        	 
+									     		   EditarProductogenfac(hiddenvalorgenfac);
+									         }
+									     }
+									},
+									{
+										html : "<i class='ace-icon fa fa-times bigger-110'></i>&nbsp; Cancelar",
+										"class" : "btn btn-minier",
+										click : function() {
+											
+											$(this).dialog("close");
+											
+										}
+									} ],
+							open : function() {
+								//********************
+								
+								limpiar_dialog_editingreso();
+								
+								
+								$.ajax({
+											type : 'get',
+											dataType : 'json',
+											url : '/beneficio/mostrarmontoingresodet?id_ingreso='+ idreg,
+											beforeSend : function() {
+
+											},
+											success : function(resultgenfac2) {
+
+												var jsongenfac2 = resultgenfac2;
+												
+												$.each(jsongenfac2,function(j,resultgenfac2) {
+																	
+																	
+													     	    	var id_planta=resultgenfac2['planta_cliente'];
+													     	    	
+																	$('#cmbclienteingresoedit').val(id_planta);
+																	
+																	$("#txtcantidadingresoeditgenfac").val(resultgenfac2['cantidad']);
+																																							
+																	$("#txtcantidadingresodetedit").val(resultgenfac2['descripcion']);
+																	
+																	$("#txtnroboletaedit").val(resultgenfac2['codigo_boleta']);
+																													
+																	
+																});
+												
+
+											},
+
+											error : function(xhr, ajaxOptions,
+													thrownError) {
+												alert(xhr.status + ' '
+														+ thrownError);
+											}
+										});
+                                  
+							}
+
+						})
+	}
+	
+function AbrirEliTmpDetalleFac(valorgenfac){
+			$( "#dialog-eliminargenfac" ).removeClass('hide').dialog({
+				resizable: false,
+				width: '320',
+				modal: true,
+				title: "<div class='widget-header'><h4 class='smaller'><i class='ace-icon fa fa-exclamation-triangle red'></i> Eliminar Registro</h4></div>",
+				title_html: true,
+				buttons: [
+					{
+						html: "<i class='ace-icon fa fa-trash-o bigger-110'></i>&nbsp; Eliminar",
+						"class" : "btn btn-danger btn-minier",
+						click: function() {
+							  $.ajax({
+									type : 'get',
+									dataType : 'text',
+									url : '/beneficio/grabarmontoingreso?id_ingreso='+valorgenfac+'&flag=3'
+									+ '&txtfechaingreso='
+									+ '&cmbclienteingreso='
+									+ '&txtcantidadingreso='
+									+ '&txtnroboleta='
+									+ '&txtcantidadingresodet=',
+									 beforeSend: function(){
+										  },
+									success : function(resultgenfac) {
+										
+										var txtfechaingreso =$("#txtfechaingreso").val();
+										
+										   $( "#dialog-eliminargenfac" ).dialog( "close" );	
+										   
+											Recargar_grillaIngreso_1(txtfechaingreso) ;
+											
+											Calculo(txtfechaingreso);
+											
+									},
+									
+									error : function(xhr, ajaxOptions, thrownError) {
+										alert(xhr.status + ' ' + thrownError);
+									}
+								});
+							  
+						}
+					}
+					,
+					{
+						html: "<i class='ace-icon fa fa-times bigger-110'></i>&nbsp; Cancelar",
+						"class" : "btn btn-minier",
+						click: function() {
+							$( this ).dialog( "close" );
+						}
+					}
+				]
+			});
+	  }
+	  
+	  function cerrarIngreso()
+	  
+	  	{
+		//removedialogo('dialog-grabargenfac');
+   		removedialogo('dialog_ediTmpDetalleFacgenfac');
+   		removedialogo('dialog-eliminargenfac');
+   	    removedialogo('dialog_AgregarNuevoIngreso');
+   		
+   		
+		loadPagina("/beneficio/verMontodiario","contenido-html");
+		
+		$('#txtfechaingreso').focus();
+		  
+		
+		}
+	
+	</script>
+
+
+

@@ -1,0 +1,531 @@
+	<form class="cmxform" id="generarIngresoEgresoForm"  autocomplete="off">
+<!-- /section:settings.box -->
+<div class="page-header">
+	<h1>
+		Reportes <small> <i
+			class="ace-icon fa fa-angle-double-right"></i> Ingreso-Egreso Diario 
+		</small>
+	</h1>
+</div>
+<!-- /.page-header -->
+
+										
+<div class="row">
+		<input class="form-control" id="txtcodigo_aleatoriogenfac" type="hidden" />
+		<input class="form-control" id="hiddenvalorgenfac" type="hidden" />
+		
+												
+												<div class="col-xs-2 col-md-2">
+													<div class="form-groupclearfix ">
+														<div class="col-xs-12">
+															<label class="" >Fecha &nbsp;</label>
+														</div>
+														<div class="col-xs-12">
+															<input id="txtfechaingreso" name="txtfechaingreso"
+																type="text" placeholder="Ingrese Fecha"
+																class="fecha form-control {dateITA:true}" />
+														</div>
+													</div>
+												</div>
+												<div class="col-xs-2 col-md-2">
+													<div class="form-group clearfix">
+														<div class="col-xs-12">
+															<label class="">&nbsp;</label>
+														</div>
+														<div class="col-xs-12">
+															<input type="button" value="Buscar"
+																onclick="proceso();" class="btn btn-info btn-sm" />
+														</div>
+													</div>
+												</div>
+			
+		</div>
+		
+														
+		<table id="grid-tableingreso"></table>
+		<div id="grid-pagergenfac"></div>
+		<br />
+		
+		
+		
+		  <div  >
+
+				<table 	 id="txt_calculados"  align="right" border="3" >
+					<tbody>
+					     
+						<tr>
+							<td valign=top ><div    id="txtvalor1" ></div>
+						</tr>
+						<tr>
+							<td valign=top ><div    id="txtvalor2" ></div>
+						</tr>
+						<tr>
+							<td valign=top ><div    id="txtvalor3" ></div>
+						</tr>
+						
+					</tbody>
+				</table>
+				
+			</div>
+			 						
+		<!-- PAGE CONTENT ENDS -->
+	
+	<!-- /.col -->
+<!-- /.row -->
+
+<!--  dialogs -->
+
+		
+</form>			
+
+
+<!-- inline scripts related to this page -->
+
+<!--// funciones-->
+<script type="text/javascript">
+$(document).ready(function(){ 
+	
+});
+	
+$(".select2").css('width','200px').select2({allowClear:true})
+.on('change', function(){
+	$(this).closest('form').validate().element($(this));
+}); 
+
+$.validator.addMethod("valueNotEquals", function(value, element, arg){
+	  return arg != value;
+	 }, "Por Favor seleccione un cliente");
+
+
+
+$('#generarIngresoEgresoForm').validate({
+	errorElement: 'span',
+	//errorClass: 'help-block',
+	focusInvalid: true,
+	ignore: "",
+	rules: {
+		
+		    txtfechaingreso: {
+			required: true,
+			dateFactura: true
+		}
+	},
+		
+	highlight: function (e) {
+		$(e).closest('.form-group').removeClass('has-info').addClass('has-error');
+	},
+
+	success: function (e) {
+		$(e).closest('.form-group').removeClass('has-error');//.addClass('has-info');
+		$(e).remove();
+	},
+	errorPlacement: function (error, element) {
+		if(element.is('input[type=checkbox]') || element.is('input[type=radio]')) {
+			var controls = element.closest('div[class*="col-"]');
+			if(controls.find(':checkbox,:radio').length > 1) controls.append(error);
+			else error.insertAfter(element.nextAll('.lbl:eq(0)').eq(0));
+		}
+		else if(element.is('.select2')) {
+			error.insertAfter(element.siblings('[class*="select2-container"]:eq(0)'));
+		}
+		else if(element.is('.chosen-select')) {
+			error.insertAfter(element.siblings('[class*="chosen-container"]:eq(0)'));
+		}
+		else error.insertAfter(element);
+	},	
+	submitHandler: function (form) {
+		//alert(form.attr("id"))
+		//grabarFacturagenfac();
+		var txtfechaingreso = $("#txtfechaingreso").val();
+		
+		$('#btningreso').focus();
+		
+		$("#txtfechaingreso").attr("readonly","readonly");
+        $("#txtfechaingreso").addClass("readOnly");
+        
+        $("#btningreso").removeAttr("disabled");
+     		
+		Recargar_grillaIngreso_3(txtfechaingreso);
+		
+		Calculo(txtfechaingreso);
+				
+	},
+	invalidHandler: function (form) {
+	}
+});
+
+$(function () {
+					
+					$.datepicker.regional['es'] = {
+							 closeText: 'Cerrar',
+							 prevText: '< Ant',
+							 nextText: 'Sig >',
+							 currentText: 'Hoy',
+							 monthNames: ['Enero', 'Febrero', 'Marzo', 'Abril', 'Mayo', 'Junio', 'Julio', 'Agosto', 'Septiembre', 'Octubre', 'Noviembre', 'Diciembre'],
+							 monthNamesShort: ['Ene','Feb','Mar','Abr', 'May','Jun','Jul','Ago','Sep', 'Oct','Nov','Dic'],
+							 dayNames: ['Domingo', 'Lunes', 'Martes', 'Mi�rcoles', 'Jueves', 'Viernes', 'S�bado'],
+							 dayNamesShort: ['Dom','Lun','Mar','Mi�','Juv','Vie','S�b'],
+							 dayNamesMin: ['Do','Lu','Ma','Mi','Ju','Vi','S�'],
+							 weekHeader: 'Sm',
+							 dateFormat: 'dd/mm/yy',
+							 firstDay: 1,
+							 isRTL: false,
+							 showMonthAfterYear: false,
+							 yearSuffix: ''
+							 };
+					
+				    $.datepicker.setDefaults($.datepicker.regional["es"]);
+				    
+				    $("#txtfechaingreso").datepicker({
+				        dateFormat: 'dd/mm/yy',
+				        firstDay: 1
+				    }).datepicker("setDate", new Date());
+				    
+				    				    
+	});
+
+var grid_tablegenfac = jQuery("#grid-tableingreso");	
+    
+	
+jQuery(function($) {
+		
+		
+		$('#sidebar2').insertBefore('.page-content');
+		$('.navbar-toggle[data-target="#sidebar2"]').insertAfter(
+				'#menu-toggler');
+		$(document).on('settings.ace.two_menu',
+				function(e, event_name, event_val) {
+					if (event_name == 'sidebar_fixed') {
+						if ($('#sidebar').hasClass('sidebar-fixed')) {
+							$('#sidebar2').addClass('sidebar-fixed');
+							$('#navbar').addClass('h-navbar');
+						} else {
+							$('#sidebar2').removeClass('sidebar-fixed')
+							$('#navbar').removeClass('h-navbar');
+						}
+					}
+				}).triggerHandler('settings.ace.two_menu',
+				[ 'sidebar_fixed', $('#sidebar').hasClass('sidebar-fixed') ]);
+
+		$.widget("ui.dialog", $.extend({}, $.ui.dialog.prototype, {
+			_title : function(title) {
+				var $title = this.options.title || '&nbsp;'
+				if (("title_html" in this.options)
+						&& this.options.title_html == true)
+					title.html($title);
+				else
+					title.text($title);
+			}
+		}));
+
+	});
+
+   
+
+	jQuery(function($) {
+
+
+		var grid_selectoringreso = "#grid-tableingreso";
+		var pager_selectoringreso = "#grid-pagergenfac";
+	
+		//resize to fit page size
+		$(window).on(
+				'resize.jqGrid',
+				function() {
+					$(grid_selectoringreso).jqGrid('setGridWidth',
+							$(".page-content").width());
+				})
+		//resize on sidebar collapse/expand
+		var parent_column = $(grid_selectoringreso).closest('[class*="col-"]');
+		$(document).on(
+				'settings.ace.jqGrid',
+				function(ev, event_name, collapsed) {
+					if (event_name === 'sidebar_collapsed'
+							|| event_name === 'main_container_fixed') {
+						//setTimeout is for webkit only to give time for DOM changes and then redraw!!!
+						setTimeout(function() {
+							$(grid_selectoringreso).jqGrid('setGridWidth',
+									parent_column.width());
+						}, 0);
+					}
+				})
+
+		
+	  
+		  function Fmatternumber(cellvalue, options, rowObject)
+		  {
+						var cantm = cellvalue;
+					    var elem = cantm.split('.');
+							  entero = elem[0];
+							  decimal = elem[1];
+							var count_element = decimal.length
+						if(count_element =="1" || decimal == "0" || decimal == "00"){
+								
+								//var newnumero=cantm.substring(0, cantm.indexOf(".")).toLowerCase();
+								//cellvalue=newnumero;
+								 return cellvalue;
+							}else{
+								return cellvalue;}
+			}
+			
+		  // grilla
+		  
+		jQuery(grid_selectoringreso)
+				.jqGrid(
+						{
+							url : '/beneficio/listaringresoegreso?fecha_ingreso=',
+							editurl : '',
+							datatype : "json",
+							mtype : 'get',
+							colNames : [ 'CLIENTE','INGRESO A CAJA','EGRESOS DE CAJA','DESCRIPCION'],
+							colModel : [ 
+
+							{
+								name : 'cliente',
+								index : 'cliente',
+								width : "20%",
+								sorttype : 'number',
+								editable : false
+								
+								
+							},
+							{
+								name : 'ingreso_caja',
+								index : 'ingreso_caja',
+								width : "15%",
+								editable : false,
+								align:'center',
+								formatter :FormatoCelda1
+								
+							},							 
+							{
+								name : 'egreso_caja',
+								index : 'egreso_caja',
+								width : "15%",
+								sorttype : "int",
+								editable : false,
+								align:'center',
+								formatter :FormatoCelda2
+								
+							},
+							{
+								name : 'descripcion',
+								index : 'descripcion',
+								width : "35%",
+								editable : false
+
+							}
+							],
+						
+							pager : pager_selectoringreso,
+							altRows: true,
+							rowList: [],        // disable page size dropdown
+						    pgbuttons: true,     // disable page control like next, back button
+						    pgtext: null,         // disable pager text like 'Page 0 of 10'
+						    viewrecords: true,
+						    height:300,
+						   
+						    gridComplete: function()
+						    {           
+						       $( '#prev_grid-pagergenfac' ).hide();
+						       $( '#next_grid-pagergenfac' ).hide();
+						       $( '#last_grid-pagergenfac' ).hide();
+						       $( '#first_grid-pagergenfac' ).hide();
+						       $( '#first_grid-pagergenfac' ).hide();
+						       $( '.ui-separator' ).hide();
+						       
+						      					             
+						    },
+							loadComplete: function(data){
+			                	//calculateTotalgenfac();
+			                }
+						});
+
+					  
+		$(window).triggerHandler('resize.jqGrid');//trigger window resize to make the grid get the correct size
+
+		//navButtons
+	jQuery(grid_selectoringreso).jqGrid(
+				'navGrid',
+				pager_selectoringreso,
+				{ //navbar options
+					edit : false,
+					editicon : 'ace-icon fa fa-pencil blue',
+					add : false,
+					addicon : 'ace-icon fa fa-plus-circle purple',
+					del : false,
+					delicon : 'ace-icon fa fa-trash-o red',
+					search : false,
+					searchicon : 'ace-icon fa fa-search orange',
+					refresh : true,
+					refreshicon : 'ace-icon fa fa-refresh green',
+					view : false,
+					viewicon : 'ace-icon fa fa-search-plus grey',
+				},
+				{
+					//edit record form
+					//closeAfterEdit: true,
+					//width: 700,
+					recreateForm : true,
+					beforeShowForm : function(e) {
+						var form = $(e[0]);
+						form.closest('.ui-jqdialog').find(
+								'.ui-jqdialog-titlebar').wrapInner(
+								'<div class="widget-header" />')
+						style_edit_form(form);
+					}
+				},
+				{
+					//new record form
+					//width: 700,
+					closeAfterAdd : true,
+					recreateForm : true,
+					viewPagerButtons : false,
+					beforeShowForm : function(e) {
+						var form = $(e[0]);
+						form.closest('.ui-jqdialog').find(
+								'.ui-jqdialog-titlebar').wrapInner(
+								'<div class="widget-header" />')
+						style_edit_form(form);
+					}
+				},
+				{
+					//delete record form
+					recreateForm : true,
+					beforeShowForm : function(e) {
+						var form = $(e[0]);
+						if (form.data('styled'))
+							return false;
+
+						form.closest('.ui-jqdialog').find(
+								'.ui-jqdialog-titlebar').wrapInner(
+								'<div class="widget-header" />')
+						style_delete_form(form);
+
+						form.data('styled', true);
+					},
+					onClick : function(e) {
+						alert(1);
+					}
+				},
+				{
+					//search form
+					recreateForm : true,
+					afterShowSearch : function(e) {
+						var form = $(e[0]);
+						form.closest('.ui-jqdialog').find('.ui-jqdialog-title')
+								.wrap('<div class="widget-header" />')
+						style_search_form(form);
+					},
+					afterRedraw : function() {
+						style_search_filters($(this));
+					},
+					multipleSearch : true,
+				/**
+				multipleGroup:true,
+				showQuery: true
+				 */
+				},
+				{
+					//view record form
+					recreateForm : true,
+					beforeShowForm : function(e) {
+						var form = $(e[0]);
+						form.closest('.ui-jqdialog').find('.ui-jqdialog-title')
+								.wrap('<div class="widget-header" />')
+					}
+				})
+
+	});
+
+function  proceso(){
+		 
+		 Recargar_grillaIngreso_3();
+		 Calculo();
+	 }
+	function Recargar_grillaIngreso_3(txtfechaingreso) {
+
+		var txtfechaingreso=$("#txtfechaingreso").val();
+		
+		$("#grid-tableingreso").jqGrid("setGridParam",
+						{
+							page : 1,
+							url : '/beneficio/listaringresoegreso?fecha_ingreso='+ txtfechaingreso,
+							datatype : "json"
+						}).trigger("reloadGrid");
+
+		return [ true, '' ];
+	}
+
+		
+	function Calculo(fecha) {
+		
+		var fecha=$("#txtfechaingreso").val();
+			
+		$.ajax({
+			type : 'get',
+			dataType : 'json',
+			url : '/beneficio/calculo_ingresoegreso?fecha='+ fecha,
+			beforeSend : function() {
+			},
+			success : function(resultgenfac) {
+				
+				var jsongenfac_ = resultgenfac;
+
+				$.each(jsongenfac_, function(j, resultgenfac) {
+					
+					//Planta
+					var total_ingreso     = resultgenfac['monto_ingreso'];
+					var total_egreso      = resultgenfac['monto_egreso'];
+					var total_saldo       = resultgenfac['monto_saldo'];
+									
+										
+					$("#txtvalor1").html('<b>TOTAL INGRESO :</b><font size=2 color=blue><b>'+total_ingreso+'</b></font>');
+					$("#txtvalor2").html('<b>TOTAL EGRESO  :</b><font size=2 color=red><b>'+total_egreso+'</b></font>');
+					
+					if (parseFloat(total_ingreso) - parseFloat(total_egreso) >0)
+						{
+						$("#txtvalor3").html('<b><u>TOTAL SALDO</u> :</b><font size=3 color=green><b>'+total_saldo+'</b></font>');
+						}else {
+						$("#txtvalor3").html('<b><u>TOTAL SALDO</u> :</b><font size=3 color=red><b>'+total_saldo+'</b></font>');	
+						}
+					
+										
+				});
+			},
+
+			error : function(xhr, ajaxOptions, thrownError) {
+				alert(xhr.status + ' ' + thrownError);
+			}
+		});
+	}
+	
+	 	
+	  function FormatoCelda1(cellvalue, options, rowObject) {
+			
+					
+			if (cellvalue==null)
+			{
+			return "<font size=2 color=blue><b></b></font>";
+			}
+			else{
+			return "<font size=2 color=blue><b>"+ cellvalue + "</b></font>";
+			}
+			
+		}
+	  function FormatoCelda2(cellvalue, options, rowObject) {
+		  
+			if (cellvalue==null)
+				{
+				return "<font size=2 color=red><b></b></font>";
+				}
+			else{
+				return "<font size=2 color=red><b>"+ cellvalue + "</b></font>";
+			}
+			
+		}
+	  
+	</script>
+
+
+
